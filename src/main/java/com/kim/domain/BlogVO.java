@@ -13,10 +13,9 @@ public class BlogVO {
      * userName : ID
      */
 
-
     private String blogName;
     private String tag;
-    private Status status;
+    private boolean status;
     private String userName;
 
 //    private String mainPagePost;
