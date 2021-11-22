@@ -15,6 +15,7 @@ public class CategoryVO {
      * description : 카테고리 설명
      */
 
+    private int seq;
     private String blogName;
     private String categoryName;
     private String displayType;

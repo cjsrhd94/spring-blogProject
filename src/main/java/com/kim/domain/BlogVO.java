@@ -14,8 +14,8 @@ public class BlogVO {
      */
 
     private String blogName;
-    private String tag;
-    private boolean status;
+    private String tag = "#태그";
+    private boolean status = true;
     private String userName;
 
 //    private String mainPagePost;
