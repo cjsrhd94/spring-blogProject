@@ -6,14 +6,15 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserRowMapper implements RowMapper<UserVO> {
+public class UserRowMapper implements RowMapper {
 
     @Override
     public UserVO mapRow(ResultSet rs, int rowNum) throws SQLException {
         UserVO user = new UserVO();
-        user.setUserName(rs.getString("USERNAME"));
+        user.setUserId(rs.getLong("USER_ID"));
+        user.setId(rs.getString("ID"));
         user.setPassword(rs.getString("PASSWORD"));
-        user.setUserNickname(rs.getString("USERNICKNAME"));
+        user.setUserName(rs.getString("USER_NAME"));
         user.setRole(rs.getString("ROLE"));
         return user;
     }
