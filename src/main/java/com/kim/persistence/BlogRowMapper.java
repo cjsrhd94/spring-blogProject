@@ -12,10 +12,12 @@ public class BlogRowMapper implements RowMapper<BlogVO> {
     @Override
     public BlogVO mapRow(ResultSet rs, int rowNum) throws SQLException {
         BlogVO blog = new BlogVO();
-        blog.setBlogName(rs.getString("BLOGNAME"));
+        blog.setBlogId(rs.getLong("BLOG_ID"));
+        blog.setBlogName(rs.getString("BLOG_NAME"));
         blog.setTag(rs.getString("TAG"));
-        blog.setStatus(rs.getBoolean("STATUS"));
-        blog.setUserName(rs.getString("USERNAME"));
+        blog.setCntDisplayPost(rs.getLong("CNT_DISPLAY_POST"));
+        blog.setStatus(rs.getString("STATUS"));
+        blog.setUserId(rs.getLong("USER_ID"));
         return blog;
     }
 }

@@ -20,7 +20,7 @@ public class BlogVO {
     private String blogName;
     private String tag = "#태그";
     private Long cntDisplayPost;
-    private String status;
-    private String userId;
+    private String status = "OPEN";
+    private Long userId;
 
 }
