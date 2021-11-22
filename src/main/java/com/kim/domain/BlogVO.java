@@ -5,19 +5,22 @@ import lombok.Data;
 @Data
 public class BlogVO {
 
-    /* PK = blogName
-     * FK = userName
+    /* PK = blogId
+     * FK = userId
      *
+     * blogId : 블로그 고유 번호
      * blogName : 블로그 이름
      * tag : 블로그 태그
-     * userName : ID
+     * cntDisplayPost :
+     * status : 운영 상태
+     * userId : 유저 고유 번호
      */
 
+    private Long blogId;
     private String blogName;
     private String tag = "#태그";
-    private boolean status = true;
-    private String userName;
+    private Long cntDisplayPost;
+    private String status;
+    private String userId;
 
-//    private String mainPagePost;
-//    private String logo;
 }

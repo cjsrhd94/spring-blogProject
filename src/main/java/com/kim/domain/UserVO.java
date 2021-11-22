@@ -5,17 +5,18 @@ import lombok.Data;
 @Data
 public class UserVO {
 
-    /* PK = userName
+    /* PK = userId
      *
-     * userName : ID
+     * userId : 사용자 고유번호
+     * id : ID
      * password : 비밀번호
-     * userNickname : 닉네임
+     * userName : 닉네임
      * role : 권한
-     *
      */
 
-    private String userName;
+    private Long userId;
+    private String id;
     private String password;
-    private String userNickname;
+    private String userName;
     private String role;
 }

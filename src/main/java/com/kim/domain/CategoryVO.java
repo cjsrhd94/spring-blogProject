@@ -5,20 +5,21 @@ import lombok.Data;
 @Data
 public class CategoryVO {
 
-    /* PK = categoryName
-     * FK = blogName
+    /* PK = categoryId
+     * FK = blogId
      *
-     * blogName : 블로그 이름
+     * categoryId : 카테고리 고유번호
      * categoryName : 카테고리 이름
      * displayType : 보이기 유형
-     * postCnt : 포스트 수
+     * cntDisplayPost : 포스트 수
      * description : 카테고리 설명
+     * blogId : 블로그 고유번호
      */
 
-    private int seq;
-    private String blogName;
+    private Long categoryId;
     private String categoryName;
     private String displayType;
-    private int postCnt;
+    private Long cntDisplayPost;
     private String description;
+    private Long blogId;
 }
