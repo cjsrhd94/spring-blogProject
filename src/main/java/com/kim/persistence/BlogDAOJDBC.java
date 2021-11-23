@@ -1,8 +1,8 @@
 package com.kim.persistence;
 
 import com.kim.domain.BlogVO;
-import com.kim.domain.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +20,10 @@ public class BlogDAOJDBC implements BlogDAO {
     private final String BLOG_DELETE = "delete blog where blog_Id = ?";
     private final String BLOG_GET = "select * from blog where blog_Id = ?";
     private final String BLOG_LIST = "select * from blog order by blog_Id desc";
+    private final String BLOG_LIST_BLOGNAME = "select * from blog where blog_name like ? order by blog_Id desc";
+    private final String BLOG_LIST_TAG = "select * from blog where tag like ? order by blog_Id desc";
+//    private final String BLOG_LIST_USERNAME = "select * from blog left join users on blog.user_id = users.user_id" +
+//            "where users.user_name like ? order by blog_id";
 
     // 블로그 등록
     @Override
@@ -42,18 +46,30 @@ public class BlogDAOJDBC implements BlogDAO {
         spring.update(BLOG_DELETE, vo.getBlogId());
     }
 
-    // 특정 블로그 목록 조회
+    // 로그인시 블로그 세션 등록
     @Override
     public BlogVO getBlog(BlogVO vo) {
         System.out.println("===> SPRING 기반으로 getBlog() 기능 처리");
         Object[] params = {vo.getBlogId()};
-        return spring.queryForObject(BLOG_GET, params, new BlogRowMapper());
+        try {
+            return spring.queryForObject(BLOG_GET, params, new BlogRowMapper());
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     // 블로그 전체 목록 조회
     @Override
     public List<BlogVO> getBlogList(BlogVO vo) {
         System.out.println("===> SPRING 기반으로 getBlogList() 기능 처리");
-        return spring.query(BLOG_LIST, new BlogRowMapper());
+        Object[] params = {"%" + vo.getSearchKeyword() + "%"};
+        if (vo.getSearchCondition().equals("blogName")) {
+            return spring.query(BLOG_LIST_BLOGNAME, params, new BlogRowMapper());
+        } else if (vo.getSearchCondition().equals("tag")) {
+            return spring.query(BLOG_LIST_TAG, params, new BlogRowMapper());
+//        } else if (vo.getSearchCondition().equals("userName")) {
+//            return spring.query(BLOG_LIST_USERNAME, params, new BlogRowMapper());
+        } else
+            return spring.query(BLOG_LIST, new BlogRowMapper());
     }
 }

@@ -23,4 +23,7 @@ public class BlogVO {
     private String status = "OPEN";
     private Long userId;
 
+    private String searchCondition;
+    private String searchKeyword;
+
 }
