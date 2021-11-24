@@ -16,13 +16,13 @@
         <a href="/loginView.do">로그인</a>
     </c:if>
     <!-- 블로그를 소유하지 않은 사용자가 로그인에 성공하면 블로그 등록만 보인다. -->
-<%--        <c:if test="${user != null && blogList.blogName == null}">--%>
+    <%--        <c:if test="${user != null && blogList.blogName == null}">--%>
     <a href="/blogCreateView.do">블로그 등록</a>
-<%--        </c:if>--%>
+    <%--        </c:if>--%>
     <!-- 블로그를 소유한 사용자가 로그인한 경우에 내 블로그로 가기만 보인다. -->
-<%--        <c:if test="${user != null && blogList.blogName != null}">--%>
+    <%--        <c:if test="${user != null && blogList.blogName != null}">--%>
     <a href="/blogMainView.do?blogId=${user.userId }">내 블로그로 가기</a>
-<%--        </c:if>--%>
+    <%--        </c:if>--%>
 </div>
 
 <!-- 검색 시작 -->
@@ -40,14 +40,14 @@
                       name="searchCondition"
                       value="tag"
                       <c:if test="${search.searchCondition == 'tag'}">checked</c:if>>태그</label>
-<%--        <label><input type="radio"--%>
-<%--                      name="searchCondition"--%>
-<%--                      value="userName"--%>
-<%--                      <c:if test="${search.searchCondition == 'userName'}">checked</c:if>>블로거</label>--%>
+        <label><input type="radio"
+                      name="searchCondition"
+                      value="userName"
+                      <c:if test="${search.searchCondition == 'userName'}">checked</c:if>>블로거</label>
     </div>
 </form>
 <!-- 검색 종료 -->
-
+<c:if test="${search.searchKeyword != ''}">
 <table border="1" width="700" align="center">
     <tr bgcolor="#e9967a">
         <th>블로그 제목</th>
@@ -65,7 +65,7 @@
     <c:forEach var="blog" items="${blogList }">
         <tr align="center">
             <td><a href="/blogMainView.do?blogId=${blog.blogId }">${blog.blogName}</a></td>
-            <td>블로거</td>
+            <td>${userList}</td>
             <td>${blog.tag}</td>
             <td>logo</td>
             <td>${blog.status}</td>
@@ -75,6 +75,7 @@
         </tr>
     </c:forEach>
     <!-- BlogList 종료 -->
+    </c:if>
 
 </table>
 </body>

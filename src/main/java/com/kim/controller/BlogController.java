@@ -1,7 +1,13 @@
 package com.kim.controller;
 
 import com.kim.domain.BlogVO;
+import com.kim.domain.BoardVO;
+import com.kim.domain.CategoryVO;
+import com.kim.domain.UserVO;
 import com.kim.service.BlogService;
+import com.kim.service.BoardService;
+import com.kim.service.CategoryService;
+import com.kim.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class giBlogController {
+public class BlogController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private BoardService boardService;
 
     @RequestMapping("/")
     public String root(){
@@ -21,10 +36,11 @@ public class giBlogController {
     }
 
     @RequestMapping("/index.do")
-    public String index(BlogVO vo, HttpSession session, Model model){
+    public String index(BlogVO vo, Model model){
         System.out.println("블로그 목록 검색 기능 처리");
         if (vo.getSearchCondition() == null) vo.setSearchCondition("blogName");
         if (vo.getSearchKeyword() == null) vo.setSearchKeyword("");
+
         model.addAttribute("blogList", blogService.getBlogList(vo));
         model.addAttribute("search", vo);
         return "forward:index.jsp";
@@ -36,15 +52,44 @@ public class giBlogController {
     }
 
     @RequestMapping("/blogCreate.do")
-    public String blogCreate(BlogVO vo, HttpSession session) {
+    public String blogCreate(BlogVO vo) {
         blogService.insertBlog(vo);
         return "forward:/index.do";
     }
 
     @RequestMapping("/blogMainView.do")
-    public String blogMainView(BlogVO vo, Model model){
+    public String blogMainView(BlogVO blogVO, CategoryVO categoryVO, BoardVO boardVO, Model model){
+        model.addAttribute("blog", blogService.getBlog(blogVO));
+        model.addAttribute("categoryList", categoryService.getCategoryList(categoryVO));
+        model.addAttribute("boardList", boardService.getBoardList(boardVO));
+        return "forward://WEB-INF/views/blogmain.jsp";
+    }
+
+    @RequestMapping("/blogAdminView_basic.do")
+    public String blogAdminView_basic(BlogVO vo, Model model){
         model.addAttribute("blog", blogService.getBlog(vo));
-        return "blogmain";
+        return "blogadmin_basic";
+    }
+
+    @RequestMapping("/blogAdmin_basic_update.do")
+    public String blogAdmin_basic_update(BlogVO vo, Model model){
+        blogService.updateBlog(vo);
+        model.addAttribute("blog", blogService.getBlog(vo));
+        return "forward:/blogMainView.do";
+    }
+
+    @RequestMapping("/blogAdminView_category.do")
+    public String blogAdminView_category(BlogVO blogVO, CategoryVO categoryVO, Model model){
+        model.addAttribute("blog", blogService.getBlog(blogVO));
+        model.addAttribute("categoryList", categoryService.getCategoryList(categoryVO));
+//        return "forward:/WEB-INF/views/blogadmin_category.jsp";
+        return "blogadmin_category";
+    }
+
+    @RequestMapping("/adminPostView.do")
+    public String adminPostView(BlogVO vo, Model model){
+        model.addAttribute("blog", blogService.getBlog(vo));
+        return "adminpost";
     }
 
 }

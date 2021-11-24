@@ -1,6 +1,5 @@
 package com.kim.controller;
 
-import com.kim.domain.BlogVO;
 import com.kim.domain.UserVO;
 import com.kim.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
