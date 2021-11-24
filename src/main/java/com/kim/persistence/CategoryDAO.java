@@ -14,6 +14,9 @@ public interface CategoryDAO {
     // 카테고리 삭제
     void deleteCategory(CategoryVO vo);
 
+    // 카테고리 상세 조회
+    CategoryVO getCategory(CategoryVO vo);
+
     // 카테고리 전체 목록 조회
     List<CategoryVO> getCategoryList(CategoryVO vo);
 }

@@ -31,6 +31,12 @@ public class CategoryServiceImpl implements CategoryService {
         categoryDAO.deleteCategory(vo);
     }
 
+    // 카테고리 상세 조회
+    @Override
+    public CategoryVO getCategory(CategoryVO vo) {
+        return categoryDAO.getCategory(vo);
+    }
+
     // 카테고리 전체 목록 조회
     @Override
     public List<CategoryVO> getCategoryList(CategoryVO vo) {
