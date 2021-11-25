@@ -1,6 +1,8 @@
 package com.kim.persistence;
 
+import com.kim.domain.BlogVO;
 import com.kim.domain.BoardVO;
+import com.kim.domain.CategoryVO;
 
 import java.util.List;
 
@@ -19,4 +21,6 @@ public interface BoardDAO {
 
     // 글 목록 검색
     List<BoardVO> getBoardList(BoardVO vo);
+
+    List<BoardVO> getBoardInfo(CategoryVO categoryVO);
 }

@@ -1,6 +1,8 @@
 package com.kim.service;
 
+import com.kim.domain.BlogVO;
 import com.kim.domain.BoardVO;
+import com.kim.domain.CategoryVO;
 
 import java.util.List;
 
@@ -20,4 +22,6 @@ public interface BoardService {
 
     // 글 목록 검색
     List<BoardVO> getBoardList(BoardVO vo);
+
+    List<BoardVO> getBoardInfo(CategoryVO categoryVO);
 }

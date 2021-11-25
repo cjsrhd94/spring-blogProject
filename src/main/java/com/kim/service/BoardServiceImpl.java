@@ -1,6 +1,8 @@
 package com.kim.service;
 
+import com.kim.domain.BlogVO;
 import com.kim.domain.BoardVO;
+import com.kim.domain.CategoryVO;
 import com.kim.persistence.BoardDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +38,9 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardVO> getBoardList(BoardVO vo) {
         return boardDAO.getBoardList(vo);
+    }
+    @Override
+    public List<BoardVO> getBoardInfo(CategoryVO categoryVO) {
+        return boardDAO.getBoardInfo(categoryVO);
     }
 }

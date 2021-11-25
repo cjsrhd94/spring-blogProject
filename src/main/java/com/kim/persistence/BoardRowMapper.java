@@ -11,12 +11,11 @@ public class BoardRowMapper implements RowMapper<BoardVO> {
 	@Override
 	public BoardVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		BoardVO board = new BoardVO();
-		board.setSeq(rs.getInt("SEQ"));
+		board.setPostId(rs.getLong("POST_ID"));
 		board.setTitle(rs.getString("TITLE"));
-		board.setContent(rs.getString("CONTENT"));				
-		board.setRegDate(rs.getDate("REGDATE"));
-		board.setCategoryName(rs.getString("CATEGORYNAME"));
+		board.setContent(rs.getString("CONTENT"));
+		board.setCreatedDate(rs.getDate("CREATED_DATE"));
+		board.setCategoryId(rs.getLong("CATEGORY_ID"));
 		return board;
 	}
-
 }
