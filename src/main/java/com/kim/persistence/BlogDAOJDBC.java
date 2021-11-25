@@ -19,6 +19,7 @@ public class BlogDAOJDBC implements BlogDAO {
     private final String BLOG_INSERT = "insert into blog(blog_Id, blog_name, tag, cnt_Display_Post, status, user_Id) " +
             "values (?, ?, ?, ?, ?, ?)";
     private final String BLOG_UPDATE = "update blog set blog_name = ?, tag = ?, cnt_Display_Post = ?, status = ? where blog_Id = ?";
+    private final String BLOG_REQUEST_DELETE = "update blog set status = '삭제 요청' where blog_id = ?";
     private final String BLOG_DELETE = "delete blog where blog_Id = ?";
     private final String BLOG_GET = "select * from blog where blog_Id = ?";
     private final String BLOG_CHECKER = "select b.blog_id, b.blog_name, b.tag, b.cnt_display_post, b.status, b.user_ID " +
@@ -48,6 +49,12 @@ public class BlogDAOJDBC implements BlogDAO {
     public void updateBlog(BlogVO vo) {
         System.out.println("===> SPRING 기반으로 updateBlog() 기능 처리");
         spring.update(BLOG_UPDATE, vo.getBlogName(), vo.getTag(), vo.getCntDisplayPost(), vo.getStatus(), vo.getBlogId());
+    }
+
+    @Override
+    public void requestDeleteBlog(BlogVO vo) {
+        System.out.println("===> SPRING 기반으로 requestDeleteBlog 기능 처리");
+        spring.update(BLOG_REQUEST_DELETE, vo.getBlogId());
     }
 
     // 블로그 삭제

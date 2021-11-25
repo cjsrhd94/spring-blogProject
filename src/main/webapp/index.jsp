@@ -69,8 +69,15 @@
             <td>${blog.TAG}</td>
             <td>logo</td>
             <td>${blog.STATUS}</td>
-            <c:if test="${user.role == 'ADMIN'}">
-                <td>delete</td>
+            <c:if test="${user.role == 'ADMIN' && blog.STATUS == '삭제 요청'}">
+                <td>
+                    <a href="/deleteBlog.do?blogId=${blog.BLOG_ID}">삭제</a>
+                </td>
+            </c:if>
+            <c:if test="${user.role == 'ADMIN' && blog.STATUS != '삭제 요청'}">
+                <td>
+                    <a>삭제 불가</a>
+                </td>
             </c:if>
         </tr>
     </c:forEach>

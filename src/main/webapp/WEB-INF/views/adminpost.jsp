@@ -7,11 +7,12 @@
 <body align=center>
 <h1>${blog.blogName}</h1>
 <h2>${blog.tag}</h2>
-<a href="/">인덱스 페이지로 이동</a>
+<a href="/?userId=${user.userId }">인덱스 페이지로 이동</a>
 <div>
     <a href="/blogAdminView_basic.do?blogId=${blog.blogId}">기본 설정</a>
     <a href="/blogAdminView_category.do?blogId=${blog.blogId}">카테고리</a>
     <a href="/adminPostView.do?blogId=${blog.blogId}">글작성</a>
+    <a href="/requestDeleteBlog.do?blogId=${blog.blogId}&&userId=${user.userId}">삭제요청</a>
 </div>
 <c:if test="${postUpdate == null}">
 <div>
@@ -58,7 +59,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" value="확인">
+                        <input type="submit" value="수정하기">
                     </td>
                 </tr>
             </table>

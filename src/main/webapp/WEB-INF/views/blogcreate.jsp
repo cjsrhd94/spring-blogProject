@@ -7,6 +7,7 @@
 <h1>GBlog</h1>
 <form action="/blogCreate.do" method="post">
     <input name="blogId" type="hidden" value="${user.userId}"/>
+    <input name="userId" type="hidden" value="${user.userId}"/>
     <div>
         <input name="blogName" type="text" value="${user.userName }의 블로그"/>
         <input type="submit" value="블로그 생성"/>

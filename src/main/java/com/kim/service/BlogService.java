@@ -28,4 +28,6 @@ public interface BlogService {
 
     BlogVO getUserBlog(UserVO vo);
 
+    void requestDeleteBlog(BlogVO vo);
+
 }

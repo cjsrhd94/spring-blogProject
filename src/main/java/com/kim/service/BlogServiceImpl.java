@@ -59,4 +59,9 @@ public class BlogServiceImpl implements BlogService {
     public BlogVO getUserBlog(UserVO vo){
         return blogDAO.getUserBlog(vo);
     }
+
+    @Override
+    public void requestDeleteBlog(BlogVO vo){
+        blogDAO.requestDeleteBlog(vo);
+    }
 }

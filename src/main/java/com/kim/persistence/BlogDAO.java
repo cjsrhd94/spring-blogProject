@@ -26,4 +26,6 @@ public interface BlogDAO {
     List<Map> getBlogInfo(BlogVO vo);
 
     BlogVO getUserBlog(UserVO vo);
+
+    void requestDeleteBlog(BlogVO vo);
 }

@@ -52,7 +52,7 @@ public class BlogController {
     @RequestMapping("/blogCreate.do")
     public String blogCreate(BlogVO vo) {
         blogService.insertBlog(vo);
-        return "forward:/index.do";
+        return "forward:/";
     }
 
     @RequestMapping("/blogMainView.do")
@@ -89,6 +89,18 @@ public class BlogController {
         model.addAttribute("blog", blogService.getBlog(blogVO));
         model.addAttribute("categoryList", categoryService.getCategoryList(categoryVO));
         return "adminpost";
+    }
+
+    @RequestMapping("/requestDeleteBlog.do")
+    public String requestDeleteBlog(BlogVO vo){
+        blogService.requestDeleteBlog(vo);
+        return "forward:/";
+    }
+
+    @RequestMapping("/deleteBlog.do")
+    public String deleteBlog(BlogVO vo){
+        blogService.deleteBlog(vo);
+        return "forward:/";
     }
 
 }

@@ -9,11 +9,12 @@
     <h1>${blog.blogName}</h1>
     <h2>${blog.tag}</h2>
 </div>
-<a href="/">인덱스 페이지로 이동</a>
+<a href="/?userId=${user.userId }">인덱스 페이지로 이동</a>
 <div>
     <a href="/blogAdminView_basic.do?blogId=${blog.blogId}">기본 설정</a>
     <a href="/blogAdminView_category.do?blogId=${blog.blogId}">카테고리</a>
     <a href="/adminPostView.do?blogId=${blog.blogId}">글작성</a>
+    <a href="/requestDeleteBlog.do?blogId=${blog.blogId}&&userId=${user.userId}">삭제요청</a>
 </div>
 
 <div>
@@ -149,5 +150,6 @@
             </table>
         </form>
     </div>
+</c:if>
 </body>
 </html>
