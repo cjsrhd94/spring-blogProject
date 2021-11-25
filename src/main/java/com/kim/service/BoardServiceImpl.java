@@ -39,6 +39,7 @@ public class BoardServiceImpl implements BoardService {
     public List<BoardVO> getBoardList(BoardVO vo) {
         return boardDAO.getBoardList(vo);
     }
+
     @Override
     public List<BoardVO> getBoardInfo(CategoryVO categoryVO) {
         return boardDAO.getBoardInfo(categoryVO);
