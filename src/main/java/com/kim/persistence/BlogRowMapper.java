@@ -15,8 +15,8 @@ public class BlogRowMapper implements RowMapper<BlogVO> {
         blog.setBlogId(rs.getLong("BLOG_ID"));
         blog.setBlogName(rs.getString("BLOG_NAME"));
         blog.setTag(rs.getString("TAG"));
-        blog.setCntDisplayPost(rs.getLong("CNT_DISPLAY_POST"));
         blog.setStatus(rs.getString("STATUS"));
+        blog.setCntDisplayPost(rs.getLong("CNT_DISPLAY_POST"));
         blog.setUserId(rs.getLong("USER_ID"));
         return blog;
     }

@@ -1,21 +1,33 @@
 package com.kim.service;
 
 import com.kim.domain.BlogVO;
+import com.kim.domain.CategoryVO;
+import com.kim.domain.UserVO;
 import com.kim.persistence.BlogDAO;
+import com.kim.persistence.CategoryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
-public class BlogServiceImpl implements BlogService{
+@EnableTransactionManagement
+public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogDAO blogDAO;
 
+    @Autowired
+    private CategoryDAO categoryDAO;
+
     @Override
-    public void insertBlog(BlogVO vo) {
-        blogDAO.insertBlog(vo);
+    @Transactional
+    public void insertBlog(BlogVO blogVO) {
+        blogDAO.insertBlog(blogVO);
+        categoryDAO.insertCategory_unclassified(blogVO);
     }
 
     @Override
@@ -36,5 +48,15 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public List<BlogVO> getBlogList(BlogVO vo) {
         return blogDAO.getBlogList(vo);
+    }
+
+    @Override
+    public List<Map> getBlogInfo(BlogVO vo) {
+        return blogDAO.getBlogInfo(vo);
+    }
+
+    @Override
+    public BlogVO getUserBlog(UserVO vo){
+        return blogDAO.getUserBlog(vo);
     }
 }

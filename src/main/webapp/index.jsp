@@ -16,17 +16,17 @@
         <a href="/loginView.do">로그인</a>
     </c:if>
     <!-- 블로그를 소유하지 않은 사용자가 로그인에 성공하면 블로그 등록만 보인다. -->
-    <%--        <c:if test="${user != null && blogList.blogName == null}">--%>
+            <c:if test="${user != null && blog == null }">
     <a href="/blogCreateView.do">블로그 등록</a>
-    <%--        </c:if>--%>
+            </c:if>
     <!-- 블로그를 소유한 사용자가 로그인한 경우에 내 블로그로 가기만 보인다. -->
-    <%--        <c:if test="${user != null && blogList.blogName != null}">--%>
+            <c:if test="${user != null && blog != null }">
     <a href="/blogMainView.do?blogId=${user.userId }">내 블로그로 가기</a>
-    <%--        </c:if>--%>
+            </c:if>
 </div>
 
 <!-- 검색 시작 -->
-<form action="/" method="post">
+<form action="/?userId=${user.userId }" method="post">
     <div>
         <input name="searchKeyword" type="text" value="${search.searchKeyword}"/>
         <input type="submit" value="검색"/>
@@ -62,13 +62,13 @@
     </tr>
 
     <!-- BlogList 시작 -->
-    <c:forEach var="blog" items="${blogList }">
+    <c:forEach var="blog" items="${blogInfo }">
         <tr align="center">
-            <td><a href="/blogMainView.do?blogId=${blog.blogId }">${blog.blogName}</a></td>
-            <td>${userList}</td>
-            <td>${blog.tag}</td>
+            <td><a href="/blogMainView.do?blogId=${blog.BLOG_ID }">${blog.BLOG_NAME}</a></td>
+            <td>${blog.USER_NAME}</td>
+            <td>${blog.TAG}</td>
             <td>logo</td>
-            <td>${blog.status}</td>
+            <td>${blog.STATUS}</td>
             <c:if test="${user.role == 'ADMIN'}">
                 <td>delete</td>
             </c:if>

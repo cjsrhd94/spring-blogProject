@@ -1,8 +1,10 @@
 package com.kim.service;
 
 import com.kim.domain.BlogVO;
+import com.kim.domain.UserVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BlogService {
 
@@ -20,4 +22,10 @@ public interface BlogService {
 
     // 블로그 전체 목록 조회
     List<BlogVO> getBlogList(BlogVO vo);
+
+    // 메인페이지 블로그 정보 조회
+    List<Map> getBlogInfo(BlogVO vo);
+
+    BlogVO getUserBlog(UserVO vo);
+
 }
