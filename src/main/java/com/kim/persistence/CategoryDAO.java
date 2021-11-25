@@ -1,5 +1,6 @@
 package com.kim.persistence;
 
+import com.kim.domain.BlogVO;
 import com.kim.domain.CategoryVO;
 
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.List;
 public interface CategoryDAO {
     // 카테고리 등록
     void insertCategory(CategoryVO vo);
+
+    void insertCategory_unclassified(BlogVO blogVO);
 
     // 카테고리 수정
     void updateCategory(CategoryVO vo);

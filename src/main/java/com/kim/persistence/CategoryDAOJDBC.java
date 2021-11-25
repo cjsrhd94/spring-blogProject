@@ -20,14 +20,20 @@ public class CategoryDAOJDBC implements CategoryDAO {
     private final String CATEGORY_UPDATE = "update category set category_name = ?, display_type = ?, cnt_Display_Post = ?,description = ? where category_id = ?";
     private final String CATEGORY_DELETE = "delete category where category_id = ?";
     private final String CATEGORY_GET = "select * from category where category_id = ?";
-    private final String CATEGORY_LIST = "select * from category order by category_id asc ";
-
+    private final String CATEGORY_LIST = "select * from category where blog_id = ? order by category_id asc ";
 
     // 카테고리 등록
     @Override
     public void insertCategory(CategoryVO vo) {
         System.out.println("===> SPRING 기반으로 insertCategory() 기능 처리");
         spring.update(CATEGORY_INSERT, vo.getCategoryName(), vo.getDisplayType(), vo.getCntDisplayPost(), vo.getDescription(), vo.getBlogId());
+    }
+
+    // 블로그 생성시 미분류 카테고리를 등록한다.
+    @Override
+    public void insertCategory_unclassified(BlogVO blogVO) {
+        System.out.println("===> SPRING 기반으로 insertCategory_unclassified 기능 처리");
+        spring.update(CATEGORY_INSERT, "미분류", "제목+내용", 5, "기본 카테고리 입니다", blogVO.getBlogId());
     }
 
     // 카테고리 수정
@@ -60,7 +66,8 @@ public class CategoryDAOJDBC implements CategoryDAO {
     @Override
     public List<CategoryVO> getCategoryList(CategoryVO vo) {
         System.out.println("===> SPRING 기반으로 getCategoryList() 기능 처리");
-        return spring.query(CATEGORY_LIST, new CategoryRowMapper());
+        Object[] params = {vo.getBlogId()};
+        return spring.query(CATEGORY_LIST, params, new CategoryRowMapper());
     }
 
 
