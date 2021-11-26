@@ -6,7 +6,6 @@ import com.kim.domain.UserVO;
 import com.kim.service.BlogService;
 import com.kim.service.BoardService;
 import com.kim.service.CategoryService;
-import com.kim.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BlogController {
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private BlogService blogService;
@@ -35,13 +31,19 @@ public class BlogController {
 
     @RequestMapping("/index.do")
     public String index(BlogVO vo, Model model) {
-        System.out.println("블로그 목록 검색 기능 처리");
         if (vo.getSearchCondition() == null) vo.setSearchCondition("blogName");
         if (vo.getSearchKeyword() == null) vo.setSearchKeyword("");
 
-        model.addAttribute("blogInfo", blogService.getBlogInfo(vo));
         model.addAttribute("search", vo);
         return "forward:index.jsp";
+    }
+
+    @RequestMapping("/searchBlog.do")
+    public String searchBlog(BlogVO vo, Model model){
+        System.out.println("블로그 목록 검색 기능 처리");
+        model.addAttribute("blogInfo", blogService.getBlogInfo(vo));
+        model.addAttribute("search", vo);
+        return "forward:/";
     }
 
     @RequestMapping("/blogCreateView.do")
@@ -60,8 +62,7 @@ public class BlogController {
         model.addAttribute("blog", blogService.getBlog(blogVO));
         model.addAttribute("categoryList", categoryService.getCategoryList(categoryVO));
         model.addAttribute("boardInfo", boardService.getBoardInfo(categoryVO));
-        System.out.println(boardService.getBoardInfo(categoryVO));
-        return "forward://WEB-INF/views/blogmain.jsp";
+        return "forward:/WEB-INF/views/blogmain.jsp";
     }
 
     @RequestMapping("/blogAdminView_basic.do")

@@ -9,6 +9,7 @@ public interface CategoryDAO {
     // 카테고리 등록
     void insertCategory(CategoryVO vo);
 
+    // 블로그 생성시 미분류 카테고리를 등록
     void insertCategory_unclassified(BlogVO blogVO);
 
     // 카테고리 수정

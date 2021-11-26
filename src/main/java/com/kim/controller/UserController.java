@@ -3,7 +3,6 @@ package com.kim.controller;
 import com.kim.domain.UserVO;
 import com.kim.service.BlogService;
 import com.kim.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +35,6 @@ public class UserController {
                 return "forward:index.do";
             } else {
                 model.addAttribute("blog", blogService.getUserBlog(user));
-                System.out.println(blogService.getUserBlog(vo));
                 return "forward:/index.do";
             }
         } else {

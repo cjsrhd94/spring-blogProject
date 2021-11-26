@@ -16,7 +16,7 @@ public class CategoryServiceImpl implements CategoryService {
     // 카테고리 등록
     @Override
     public void insertCategory(CategoryVO vo) {
-        categoryDAO.insertCategory(vo);
+            categoryDAO.insertCategory(vo);
     }
 
     // 카테고리 수정

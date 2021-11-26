@@ -1,7 +1,6 @@
 package com.kim.persistence;
 
 import com.kim.domain.BlogVO;
-import com.kim.domain.UserVO;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

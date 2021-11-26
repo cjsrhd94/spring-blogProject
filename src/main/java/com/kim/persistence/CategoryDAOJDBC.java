@@ -25,35 +25,35 @@ public class CategoryDAOJDBC implements CategoryDAO {
     // 카테고리 등록
     @Override
     public void insertCategory(CategoryVO vo) {
-        System.out.println("===> SPRING 기반으로 insertCategory() 기능 처리");
+        System.out.println("===> SPRING JDBC 기반으로 insertCategory() 기능 처리");
         spring.update(CATEGORY_INSERT, vo.getCategoryName(), vo.getDisplayType(), vo.getCntDisplayPost(), vo.getDescription(), vo.getBlogId());
     }
 
-    // 블로그 생성시 미분류 카테고리를 등록한다.
+    // 블로그 생성시 미분류 카테고리를 등록
     @Override
     public void insertCategory_unclassified(BlogVO blogVO) {
-        System.out.println("===> SPRING 기반으로 insertCategory_unclassified 기능 처리");
+        System.out.println("===> SPRING JDBC 기반으로 insertCategory_unclassified 기능 처리");
         spring.update(CATEGORY_INSERT, "미분류", "제목+내용", 5, "기본 카테고리 입니다", blogVO.getBlogId());
     }
 
     // 카테고리 수정
     @Override
     public void updateCategory(CategoryVO vo) {
-        System.out.println("===> SPRING 기반으로 updateCategory() 기능 처리");
+        System.out.println("===> SPRING JDBC 기반으로 updateCategory() 기능 처리");
         spring.update(CATEGORY_UPDATE, vo.getCategoryName(), vo.getDisplayType(), vo.getCntDisplayPost(), vo.getDescription(), vo.getCategoryId());
     }
 
     // 카테고리 삭제
     @Override
     public void deleteCategory(CategoryVO vo) {
-        System.out.println("===> SPRING 기반으로 deleteCategory() 기능 처리");
+        System.out.println("===> SPRING JDBC 기반으로 deleteCategory() 기능 처리");
         spring.update(CATEGORY_DELETE, vo.getCategoryId());
     }
 
     // 카테고리 상세 조회
     @Override
     public CategoryVO getCategory(CategoryVO vo) {
-        System.out.println("===> SPRING 기반으로 getCategory() 기능 처리");
+        System.out.println("===> SPRING JDBC 기반으로 getCategory() 기능 처리");
         Object[] params = {vo.getCategoryId()};
         try {
             return spring.queryForObject(CATEGORY_GET, params, new CategoryRowMapper());
@@ -65,7 +65,7 @@ public class CategoryDAOJDBC implements CategoryDAO {
     // 카테고리 전체 목록 조회
     @Override
     public List<CategoryVO> getCategoryList(CategoryVO vo) {
-        System.out.println("===> SPRING 기반으로 getCategoryList() 기능 처리");
+        System.out.println("===> SPRING JDBC 기반으로 getCategoryList() 기능 처리");
         Object[] params = {vo.getBlogId()};
         return spring.query(CATEGORY_LIST, params, new CategoryRowMapper());
     }
