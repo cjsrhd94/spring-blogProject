@@ -9,7 +9,7 @@
 <h1>로그인 페이지</h1>
 <div align="center">
     <form action="/login.do" method="post">
-        <table border="1" align="center">
+        <table border="solid 1" align="center">
             <tr>
                 <td bgcolor="#e9967a">아이디</td>
                 <td><input type="text" name="id"/></td>
