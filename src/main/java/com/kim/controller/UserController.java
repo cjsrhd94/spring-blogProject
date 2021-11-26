@@ -30,6 +30,7 @@ public class UserController {
         UserVO user = userService.login(vo);
 
         if (user != null) {
+            System.out.println("---> 로그인 성공");
             session.setAttribute("user", user);
             if (blogService.getUserBlog(user) == null) {
                 return "forward:index.do";
@@ -38,6 +39,7 @@ public class UserController {
                 return "forward:/index.do";
             }
         } else {
+            System.out.println("---> 로그인 실패");
             return "forward:/index.do";
         }
     }
@@ -45,6 +47,7 @@ public class UserController {
     @RequestMapping("logout.do")
     public String logout(HttpSession session) {
         session.invalidate();
+        System.out.println("---> 로그아웃 완료");
         return "forward:/";
     }
 }

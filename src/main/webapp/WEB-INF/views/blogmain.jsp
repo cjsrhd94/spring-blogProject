@@ -43,6 +43,15 @@
         <div>
             <!-- 글 목록 출력 -->
             <table border="1" width="700" align="center">
+                <tr align="center" bgcolor="#add8e6">
+                    <th>제목</th>
+                    <th>내용</th>
+                    <th>글 작성일</th>
+                    <c:if test="${user.userId == blog.blogId}">
+                        <th>수정</th>
+                        <th>삭제</th>
+                    </c:if>
+                </tr>
                 <c:forEach var="board" items="${boardInfo }">
                     <tr align="center">
                         <td>${board.TITLE}</td>
@@ -56,7 +65,9 @@
                             <td>
                                 <a href="adminpostView_update.do?blogId=${blog.blogId}&&postId=${board.POST_ID}">edit</a>
                             </td>
-                            <td><a href=/adminpost_delete.do?blogId=${blog.blogId}&&postId=${board.POST_ID}>del</a></td>
+                            <td>
+                                <a href=/adminpost_delete.do?blogId=${blog.blogId}&&postId=${board.POST_ID}>del</a>
+                            </td>
                         </c:if>
                     </tr>
                 </c:forEach>

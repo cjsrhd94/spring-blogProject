@@ -40,7 +40,7 @@ public class BlogController {
 
     @RequestMapping("/searchBlog.do")
     public String searchBlog(BlogVO vo, Model model){
-        System.out.println("블로그 목록 검색 기능 처리");
+        System.out.println("---> 블로그 목록 검색 기능 처리 완료");
         model.addAttribute("blogInfo", blogService.getBlogInfo(vo));
         model.addAttribute("search", vo);
         return "forward:/";
@@ -54,6 +54,7 @@ public class BlogController {
     @RequestMapping("/blogCreate.do")
     public String blogCreate(BlogVO vo) {
         blogService.insertBlog(vo);
+        System.out.println("---> 블로그 생성 성공");
         return "forward:/";
     }
 
@@ -74,6 +75,7 @@ public class BlogController {
     @RequestMapping("/blogAdmin_basic_update.do")
     public String blogAdmin_basic_update(BlogVO vo, Model model) {
         blogService.updateBlog(vo);
+        System.out.println("---> 블로그 기본설정 변경 완료");
         model.addAttribute("blog", blogService.getBlog(vo));
         return "forward:/blogMainView.do";
     }
@@ -95,12 +97,14 @@ public class BlogController {
     @RequestMapping("/requestDeleteBlog.do")
     public String requestDeleteBlog(BlogVO vo){
         blogService.requestDeleteBlog(vo);
+        System.out.println("---> 블로그 삭제요청 완료");
         return "forward:/";
     }
 
     @RequestMapping("/deleteBlog.do")
     public String deleteBlog(BlogVO vo){
         blogService.deleteBlog(vo);
+        System.out.println("---> 블로그 삭제 완료");
         return "forward:/";
     }
 

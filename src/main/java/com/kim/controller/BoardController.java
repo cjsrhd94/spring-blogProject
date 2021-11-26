@@ -16,12 +16,14 @@ public class BoardController {
     @RequestMapping("/adminpost_insert.do")
     public String blogAdmin_category_insert(BoardVO vo){
         boardService.insertBoard(vo);
+        System.out.println("---> 글 작성 완료");
         return "forward:/blogMainView.do";
     }
 
     @RequestMapping("/adminpost_update.do")
     public String blogAdmin_category_update(BoardVO vo){
         boardService.updateBoard(vo);
+        System.out.println("---> 글 수정 완료");
         return "forward:/blogMainView.do";
     }
 
@@ -34,6 +36,7 @@ public class BoardController {
     @RequestMapping("/adminpost_delete.do")
     public String blogAdmin_category_delete(BoardVO vo){
         boardService.deleteBoard(vo);
+        System.out.println("---> 글 삭제 완료");
         return "forward:/blogMainView.do";
     }
 }
