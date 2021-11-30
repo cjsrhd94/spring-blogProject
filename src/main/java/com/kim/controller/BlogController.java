@@ -53,9 +53,13 @@ public class BlogController {
 
     @RequestMapping("/blogCreate.do")
     public String blogCreate(BlogVO vo) {
-        blogService.insertBlog(vo);
-        System.out.println("---> 블로그 생성 성공");
-        return "forward:/";
+        try{
+            blogService.insertBlog(vo);
+            System.out.println("---> 블로그 생성 성공");
+            return "forward:/loginView.do";
+        } catch (Exception e){
+            return "forward:/loginView.do";
+        }
     }
 
     @RequestMapping("/blogMainView.do")
